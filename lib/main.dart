@@ -9,8 +9,9 @@ const appPrimaryColor = Color.fromRGBO(31, 28, 78, 1);
 const appSecondaryColor = Color.fromRGBO(214, 199, 116, 1);
 const appBrightSecondaryColor = Colors.yellowAccent;
 const appSecondaryColor2 = Color.fromRGBO(110, 167, 94, 1);
-// const appTextColor = Color.fromRGBO(255, 255, 255, 0.85);
-const appTextColor = Colors.white;
+
+// LogoImage
+const logoImage = 'assets/images/logo_2.png';
 
 void main() {
   runApp(const MyApp());

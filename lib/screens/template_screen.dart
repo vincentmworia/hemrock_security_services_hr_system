@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../main.dart';
+import '../main.dart';
 
-class EmployeesScreen extends StatelessWidget {
-  const EmployeesScreen({super.key});
+class TemplateScreenView extends StatelessWidget {
+  const TemplateScreenView(this.title, {super.key});
+
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -14,10 +16,10 @@ class EmployeesScreen extends StatelessWidget {
         ),
         color: Colors.white,
       ),
-      child: const Center(
+      child: Center(
         child: Text(
-          'Employees View',
-          style: TextStyle(
+          '$title View',
+          style: const TextStyle(
             color: appSecondaryColor,
             fontSize: 30.0,
             letterSpacing: 18.0,

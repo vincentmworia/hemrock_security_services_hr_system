@@ -36,6 +36,7 @@ class MainScreenTitle extends StatelessWidget {
                 color: extendPane ? appBrightSecondaryColor : appSecondaryColor,
               ),
               onPressed: windowIconPressed,
+              splashColor: appSecondaryColor2.withOpacity(0.3),
               highlightColor: appSecondaryColor2.withOpacity(0.3),
             ),
           ),
@@ -45,8 +46,6 @@ class MainScreenTitle extends StatelessWidget {
             padding: const EdgeInsets.only(
               top: 5.0,
               bottom: 5.0,
-              // right: 5.0,
-              // left: leftPaneWidth,
             ),
             child: Row(
               mainAxisAlignment: windowWidth > 800
@@ -56,21 +55,17 @@ class MainScreenTitle extends StatelessWidget {
               children: [
                 if (windowWidth > 800)
                   const Text(
-                    // 'Home Page?',
                     'Hemrock Security Services',
                     style: TextStyle(
                       fontSize: 25.0,
-                      // color: appInversePrimaryColor,
-                      // color: appTextColor,
                       color: appSecondaryColor,
-                      // color: appSecondaryColor2,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 7.0,
                     ),
                     overflow: TextOverflow.ellipsis,
                   ),
                 Image.asset(
-                  'assets/images/logo_2.png',
+                  logoImage,
                   width: windowWidth * 0.1,
                   height: windowHeight * 0.1,
                   fit: BoxFit.contain,

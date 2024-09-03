@@ -1,83 +1,66 @@
 import 'package:flutter/material.dart';
 
 import '../main.dart';
+import '../screens/main_screen.dart';
 
 class LeftPaneIconButton extends StatefulWidget {
-  const LeftPaneIconButton(
-      {super.key,
-      required this.icon,
-      required this.buttonActive,
-      required this.titleText,
-      required this.extendPane,
-      required this.delay});
+  const LeftPaneIconButton({
+    super.key,
+    required this.icon,
+    required this.buttonActive,
+    required this.titleText,
+    required this.extendPane,
+    required this.buttonPage,
+    required this.activatePage,
+  });
 
   final IconData icon;
   final bool buttonActive;
   final String titleText;
   final bool extendPane;
-  final Duration delay;
+  final PageDisplay buttonPage;
+  final void Function(PageDisplay) activatePage;
 
   @override
   State<LeftPaneIconButton> createState() => _LeftPaneIconButtonState();
 }
 
 class _LeftPaneIconButtonState extends State<LeftPaneIconButton> {
-  static var _visibleWidgets = true;
-  static var _lockTransition = false;
   static final _inactiveBnColor = appSecondaryColor.withOpacity(0.3);
   static const _activeBnColor = appSecondaryColor;
 
-  void _pTrigLogic() {
-    if ((_visibleWidgets) && (widget.extendPane) && (!_lockTransition)) {
-      setState(() {
-        _visibleWidgets = false;
-      });
-
-      Future.delayed(const Duration(milliseconds: 300)).then((value) {
-        setState(() {
-          _visibleWidgets = true;
-        });
-      });
-      _lockTransition = true;
-    }
-    if (_lockTransition && !widget.extendPane) {
-      _lockTransition = false;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    _pTrigLogic();
-    return Visibility(
-      visible: _visibleWidgets,
-      child: InkWell(
-        onTap: () {},
-        borderRadius: BorderRadius.circular(30.0),
-        focusColor: Colors.red.withOpacity(0.2),
-        highlightColor: appSecondaryColor2.withOpacity(0.3),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            const Center(),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20.0),
-              child: Icon(widget.icon,
-                  size: 40,
+    return InkWell(
+      onTap: () => widget.activatePage(widget.buttonPage),
+      borderRadius: BorderRadius.circular(30.0),
+      focusColor: Colors.red.withOpacity(0.2),
+      splashColor: appSecondaryColor2.withOpacity(0.3),
+      highlightColor: appSecondaryColor2.withOpacity(0.3),
+      child: Row(
+        mainAxisAlignment: widget.extendPane
+            ? MainAxisAlignment.start
+            : MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          if (widget.extendPane) const SizedBox(width: 10),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 30.0),
+            child: Icon(widget.icon,
+                size: 40,
+                color:
+                    !widget.buttonActive ? _inactiveBnColor : _activeBnColor),
+          ),
+          if (widget.extendPane) const SizedBox(width: 10), // const Center(),
+          if (widget.extendPane)
+            Text(
+              widget.titleText,
+              style: TextStyle(
                   color:
-                      !widget.buttonActive ? _inactiveBnColor : _activeBnColor),
+                      !widget.buttonActive ? _inactiveBnColor : _activeBnColor,
+                  fontSize: 24.0),
             ),
-            if (widget.extendPane)
-              Text(
-                widget.titleText,
-                style: TextStyle(
-                    color: !widget.buttonActive
-                        ? _inactiveBnColor
-                        : _activeBnColor,
-                    fontSize: 25.0),
-              ),
-            const Center(),
-          ],
-        ),
+        ],
       ),
     );
   }
