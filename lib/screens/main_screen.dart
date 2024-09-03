@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import '../main.dart';
 import '../widgets/left_pane_navigation.dart';
 import '../widgets/main_screen_title.dart';
-import './data/employees_page.dart';
-import './data/home_page.dart';
-import './data/payroll_page.dart';
-import './data/profile_page.dart';
+import './detailed_view/employees_page.dart';
+import './detailed_view/home_page.dart';
+import './detailed_view/payroll_page.dart';
+import './detailed_view/profile_page.dart';
 
 enum PageDisplay {
   home,
@@ -27,7 +27,7 @@ class _MainScreenState extends State<MainScreen> {
   static const extendPaneFactor = 2.5;
 
   var _extendPane = false;
-  var _currentPage = PageDisplay.home;
+  var _currentPage = PageDisplay.employees;
 
   void windowIconPressed() {
     setState(() {

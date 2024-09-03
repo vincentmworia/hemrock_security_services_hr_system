@@ -6,12 +6,17 @@ enum PositionTitle {
   relieverGuard
 }
 
+enum Assignment {
+  roseAvenue,
+  ruarakaSchool,
+}
+
 class OfficeDetails {
   final DateTime dateOfHire;
   final String payrollNumber;
   final PositionTitle positionTitle;
-  final DateTime employeePeriod;
-  final String workStation;
+  final String employeePeriod;
+  final Assignment workStation;
 
   OfficeDetails({
     required this.dateOfHire,

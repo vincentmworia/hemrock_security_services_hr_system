@@ -1,21 +1,29 @@
 class PaymentData {
-  final int basicPay;
-  final int savings;
-  final int payeCut;
-  final int nhifCut;
-  final int nssfCut;
-  final int recoverBootCut;
+  final double grossPayBasicSalary;
+  final double savings;
+  final double payeCut;
+  final double nhifCut;
+  final double nssfCut;
+  bool recoverBootCut;
   final BankDetails bankDetails;
 
   PaymentData({
-    required this.basicPay,
+    required this.grossPayBasicSalary,
     required this.savings,
     required this.payeCut,
     required this.nhifCut,
     required this.nssfCut,
-    required this.recoverBootCut,
+    required this.recoverBootCut, // todo 1400 (2@700), not constant
     required this.bankDetails,
-  }); // 1400 (2@700)
+  });
+
+  double get netPayBasicSalary =>
+      grossPayBasicSalary -
+      savings -
+      payeCut -
+      nhifCut -
+      nssfCut -
+      (recoverBootCut ? 700.0 : 0.0);
 }
 
 class BankDetails {
@@ -23,6 +31,9 @@ class BankDetails {
   final int bankCode;
   final int bankAccountNumber;
 
-  BankDetails(
-      {required this.bankName, required this.bankCode, required this.bankAccountNumber,});
+  BankDetails({
+    required this.bankName,
+    required this.bankCode,
+    required this.bankAccountNumber,
+  });
 }
