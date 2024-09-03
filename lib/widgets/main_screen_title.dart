@@ -36,6 +36,7 @@ class MainScreenTitle extends StatelessWidget {
                 color: extendPane ? appBrightSecondaryColor : appSecondaryColor,
               ),
               onPressed: windowIconPressed,
+              highlightColor: appSecondaryColor2.withOpacity(0.3),
             ),
           ),
           Expanded(

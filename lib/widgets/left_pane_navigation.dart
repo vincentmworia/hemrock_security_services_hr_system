@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../main.dart';
+import 'package:hemrock/widgets/left_pane_icon_button.dart';
 
 class LeftPaneNavigation extends StatelessWidget {
   const LeftPaneNavigation(
@@ -8,56 +7,52 @@ class LeftPaneNavigation extends StatelessWidget {
       required this.extendPane,
       required this.extendPaneFactor,
       required this.leftPaneWidth,
-      required this.animationContainerMilliseconds});
+      required this.animationContainerMilliseconds,
+      required this.windowHeight});
 
   final bool extendPane;
   final double extendPaneFactor;
   final double leftPaneWidth;
+  final double windowHeight;
   final Duration animationContainerMilliseconds;
 
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
       width: extendPane ? leftPaneWidth * extendPaneFactor : leftPaneWidth,
+      height: windowHeight * 0.9,
       duration: animationContainerMilliseconds,
-      child: Column(
-        children: extendPane
-            ? []
-            : <Widget>[
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 20.0),
-                  child: IconButton(
-                    icon: const Icon(
-                      Icons.home,
-                      size: 40,
-                      color: appSecondaryColor,
-                    ),
-                    onPressed: () {},
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 20.0),
-                  child: IconButton(
-                    icon: const Icon(
-                      Icons.people,
-                      size: 40,
-                      color: appBrightSecondaryColor,
-                    ),
-                    onPressed: () {},
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 20.0),
-                  child: IconButton(
-                    icon: const Icon(
-                      Icons.lock,
-                      size: 40,
-                      color: appSecondaryColor,
-                    ),
-                    onPressed: () {},
-                  ),
-                ),
-              ],
+      child: SingleChildScrollView(
+        // physics: BouncingScrollPhysics(),
+        child: Column(
+          children: <Widget>[
+            LeftPaneIconButton(
+              icon: Icons.home,
+              titleText: 'Home',
+              buttonActive: false,
+              extendPane: extendPane,
+              delay: animationContainerMilliseconds,
+            ),
+            // LeftPaneIconButton(
+            //   icon: Icons.people,
+            //   titleText: 'Employees',
+            //   buttonActive: false,
+            //   extendPane: extendPane,
+            // ),
+            // LeftPaneIconButton(
+            //   icon: Icons.document_scanner_sharp,
+            //   titleText: 'Etc...',
+            //   buttonActive: false,
+            //   extendPane: extendPane,
+            // ),
+            // LeftPaneIconButton(
+            //   icon: Icons.lock,
+            //   titleText: 'Profile',
+            //   buttonActive: false,
+            //   extendPane: extendPane,
+            // ),
+          ],
+        ),
       ),
     );
   }

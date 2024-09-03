@@ -9,6 +9,7 @@ import 'data/employees_screen.dart';
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
 
+
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
@@ -59,7 +60,8 @@ class _MainScreenState extends State<MainScreen> {
                       extendPaneFactor: extendPaneFactor,
                       leftPaneWidth: leftPaneWidth,
                       animationContainerMilliseconds:
-                          animationContainerMilliseconds),
+                          animationContainerMilliseconds,
+                      windowHeight: windowHeight),
 
                   // Switch between different screens
                   const Expanded(
